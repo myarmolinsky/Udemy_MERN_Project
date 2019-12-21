@@ -28,12 +28,6 @@ our registration route is a POST request to api/users
 GET vs POST: GET is used to retrieve data from a webpage while POST is used to submit data (such as via a form or uploading a file)
 */
 
-/*
-POSTMAN:
-for users.js, after choosing to make a post request, we go to Headers and add a Key of 'Content-Type' with a Value of 'application/json'
-then in the Body we choose 'raw' and send some raw json
-*/
-
 // @route POST api/users
 // @desc Register user
 // @access Public
