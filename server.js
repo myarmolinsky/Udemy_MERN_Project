@@ -73,8 +73,9 @@ we want to separate our resources for our endpoints into collections in Postman
 collections are folders that can hold different requests
 we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
-we saved a request to our "Users & Auth" collection called "Register User"
+we saved a POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
+we also saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
 */
 
 /*
@@ -90,6 +91,12 @@ EXPRESS-VALIDATOR:
 we want to make sure the user sends the correct and required info 
 for example, as a post request to api/users would require a name, an email, and a password (as can be seen in the User model inside the 'models' folder)
 with express-validator, we can make sure the user is sending us the correct information in the correct form
+*/
+
+/*
+MIDDLEWARE:
+we created our own custom middleware inside a folder called 'middleware' in order to be able to send a token back in order to authenticate and access protected routes
+inside our 'middleware' folder, we made a file called 'auth.js'
 */
 
 const express = require("express"); //bring in express
