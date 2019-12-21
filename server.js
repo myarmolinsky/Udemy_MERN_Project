@@ -48,6 +48,15 @@ because there is no server-rendered templates, it will all happen on the front e
 'profile.js' will have routes that have anything to do with profiles (fetching them, adding them, updating them, etc.)
 'posts.js' because we will have a little forum area (where we can like, comment, etc.)
 */
+
+/*
+in order to interact with our database, we have to create a model for each of our resources
+so we made a folder called 'models'
+inside the 'models' folder we made a file called 'User.js'
+models typically always start with a capital letter
+to create a model, you must create a schema, which just holds all the fields we want the particular resource to have
+*/
+
 const express = require("express"); //bring in express
 const connectDB = require("./config/db"); //bring in db.js from folder 'config'
 
