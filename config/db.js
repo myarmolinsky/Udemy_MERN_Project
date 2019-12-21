@@ -8,7 +8,8 @@ const connectDB = async () => {
     await mongoose.connect(db, {
       //await because mongoose.connect() returns a promise
       useNewUrlParser: true, //to use new parser since old one was deprecated
-      useUnifiedTopology: true //to use new Server Discover and Monitoring Engine since old one was deprecated
+      useUnifiedTopology: true, //to use new Server Discover and Monitoring Engine since old one was deprecated
+      useCreateIndex: true //to use createIndexes instead of collection.ensureIndex since it is deprecated
     });
 
     console.log("MongoDB Connected..."); //prints if mongoose.connect() call was successful
