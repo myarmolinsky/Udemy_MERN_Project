@@ -37,10 +37,10 @@ CONFIG:
 we made a folder called 'config', inside which we made a file called 'default.json'
 the dependency we installed called 'config' allows us to create global values which we can use throughout our application
 the 'default.json' file will hold all those values
-we made one for our mongoDB string, or what's called our mongoURI
+we made one for our MongoDB string, or what's called our mongoURI
 and we set it to the string we got from going to our mongo cluster, clicking connect, connect your application, and copying the connection string
 where it says '<user>:<password>' (in this case 'matt123:<password>'), replace <password> with our password that we created for our user (in this case 'matt123')
-we also made a file inside our 'config' folder called 'db.js' which is where we will do our mongoDB connection
+we also made a file inside our 'config' folder called 'db.js' which is where we did our mongoDB connection
 */
 
 /*

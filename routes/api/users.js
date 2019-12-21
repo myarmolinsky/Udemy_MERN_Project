@@ -2,6 +2,8 @@ const express = require("express"); //bring in express
 const router = express.Router(); //bring in express router, allows us to make routes in separate files
 const gravatar = require("gravatar"); //bring in gravatar
 const bcrypt = require("bcryptjs"); //bring in bcrypt via bcryptjs
+const jwt = require("jsonwebtoken"); //bring in jwt via jsonwebtoken
+const config = require("config"); //bring in config to use the 'jwtsecret' value we made in our default.json inside our config folder
 const { check, validationResult } = require("express-validator"); //bring both of these in from express-validator (express-validator/check is deprecated so we don't use it)
 //check lets us add a second parameter in .post() as middleware which checkers given user input with provided rules
 //if any errors are found, they can be seen inside the validationResult array
@@ -102,8 +104,34 @@ router.post(
       await user.save(); //now we save the user to our database
 
       // Return jsonwebtoken because when a user registers, you want them to be logged in right away and for them to be logged in right away, they need that webtoken
-
-      res.send("User registered");
+      /*
+      JWT:
+      we want to return the token so the user can use it to authenticate and access protected routes
+      jwt consists of a header, a payload, and a signature verification
+      the payload is what we send in the token
+      what we want to send as the payload in our case is the user id so we can identify the user it is via the token
+      for us to do that, we must first sign a jwt by doing jwt.sign(<payloadObject>, <callback>)
+      later we can verify the token
+      */
+      const payload = {
+        //create our payload, which is an object with a user which has an id
+        user: {
+          id: user.id //we can get our user by this id (which is found in the '_id' property of the user object in the MongoDB database)
+        }
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"), //our signed jwt has to have some kind of secret
+        //you don't want to just put your secret here so we made it inside our default.json inside our config folder
+        { expiresIn: 3600 }, //this parameter is optional. it is a set of options
+        //the one we are using is 'expiresIn', which makes the token expire in the given amount of seconds
+        //we set it to 3600 seconds so that the token expires an hour after being made
+        (err, token) => {
+          //this last parameter is a callback which takes in a possible error 'err' and the token itself
+          if (err) throw err; //if there is an error, then just throw the error
+          res.json({ token }); //otherwise, send the token
+        }
+      );
     } catch (err) {
       //if something goes wrong here, then it's a server error
       console.error(err.message);
