@@ -65,6 +65,8 @@ to create a model, you must create a schema, which just holds all the fields we 
 
 /*
 POSTMAN:
+the url we put into our Postman when locally testing is "http://localhost:<PORT>" followed by whatever extension there is to the url
+
 we are using Postman to GET and POST
 to GET data, we put the url we want to get data from into a GET request
 to POST data, or send data, we put the url we want to send data to into a POST request
@@ -75,7 +77,11 @@ we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
 we saved a POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
+
 we also saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
+
+we saved a POST request to our "Users & Auth" collection called "Login User" so we can login quickly with our user
+we gave this POST request's Header a 'Key' of "content-type" and a 'Value' of "application/json" and we gave the body a raw json with a valid email and password
 */
 
 /*

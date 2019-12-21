@@ -64,6 +64,7 @@ router.post(
 
     //we will make a query with mongoose using User.findOne()
     //.findOne() returns a promise so we have to use async await
+
     try {
       // See if user exists (if they exist then we send back an error because we don't want two users with the same email)
       let user = await User.findOne({ email }); //this will get the user by searching by the given object
