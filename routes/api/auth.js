@@ -7,13 +7,6 @@ const jwt = require("jsonwebtoken"); //bring in jwt via jsonwebtoken
 const config = require("config"); //bring in config to use the 'jwtsecret' value we made in our default.json inside our config folder
 const { check, validationResult } = require("express-validator"); //bring both of these in from express-validator
 
-/*
-before every route you want to put 3 things
-// @route <requestType> <endpoint>
-// @desc <describeRoute>
-// @access <accessValue: Public || Private> (a certain token may be required to access a certain route if the route is private)
-*/
-
 // @route GET api/auth
 // @desc Get user via a token
 // @access Public

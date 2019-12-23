@@ -77,14 +77,17 @@ we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
 we saved a POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
-we gave this POST request's Header a Key of 'Content-Type' with a Value of 'application/json'
+we gave this POST request's Header a Key of 'content-type' with a Value of 'application/json'
 then in the Body we choose 'raw' and send some raw json with a name, an email, and a password
 
 we also saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
-we gave this GET request's Header a Key called 'x-auth-token' with a Value that is a token for one of the users
+we gave this GET request's Header a Key of 'x-auth-token' with a Value of the token of one of the users
 
 we saved a POST request to our "Users & Auth" collection called "Login User" so we can login quickly with our user
-we gave this POST request's Header a Key of "content-type" and a Value of "application/json" and we gave the body a raw json with a valid email and password
+we gave this POST request's Header a Key of 'content-type' and a Value of 'application/json' and we gave the body a raw json with a valid email and password
+
+we saved a GET request to our "Users & Auth" collection called "Get logged in user's profile" so we can quickly get the profile of a user who is logged in via their key
+we gave this GET request's header a Key of 'x-auth-token' and a Value of the token of one of the users
 */
 
 /*
