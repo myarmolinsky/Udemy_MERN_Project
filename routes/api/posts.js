@@ -115,4 +115,62 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
+// @route PUT api/posts/like/:id //PUT because we are updating a post
+// @desc Like a post
+// @access Private
+router.put("/like/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id); //find post by id
+
+    // Check if the post has already been liked by this user
+    if (
+      post.likes.filter(like => like.user.toString() === req.user.id).length > 0 //'like.user' has to be turned into a string with .toString() so that it matches 'req.user.id'
+      //.filter() takes in a function and the parameter of our .filter() is like and what we do is compare the user who made the like to the user who is currently logged in
+      //if .length is > 0, that means that the user has already liked the post
+    ) {
+      //post has already been liked by this user
+      return res.status(400).json({ msg: "Post already liked" });
+    }
+
+    // If the user has not already liked the post
+    post.likes.unshift({ user: req.user.id }); //add the current user to the beginning of the array of likes
+
+    await post.save(); //save the post
+
+    res.json(post.likes); //return the post's likes
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route PUT api/posts/unlike/:id //PUT because we are updating a post
+// @desc Unlike a post
+// @access Private
+router.put("/unlike/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (
+      post.likes.filter(like => like.user.toString() === req.user.id).length ===
+      0 //if the length is === 0, then the post has not yet been liked
+    ) {
+      return res.status(400).json({ msg: "Post has not yet been liked" });
+    }
+
+    // Get remove index
+    const removeIndex = post.likes
+      .map(like => like.user.toString())
+      .indexOf(req.user.id); //this will get the correct index of the like so that we can remove it from the array of likes
+
+    post.likes.splice(removeIndex, 1); //remove the like
+
+    await post.save();
+
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router; //export the router

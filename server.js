@@ -128,8 +128,14 @@ you need to be logged in to see posts
 GET request to our "Posts" collection called "Get post by ID" for getting a post by adding '/<post_id>' to the url after 'api/posts'
 you need to be logged in to see a post
 
-DELETE request to out "Posts" collection called "Delete post" for deleting a post by adding '/<post_id>' to the url after 'api/posts'
+DELETE request to our "Posts" collection called "Delete post" for deleting a post by adding '/<post_id>' to the url after 'api/posts'
 you need to be logged in to delete the post (and you need to be the owner of the post to delete it)
+
+PUT request to our "Posts" collection called "Like post" for liking a specific post
+you need to be logged in to like a post
+
+PUT request to our "Posts" collection called "Unlike post" for unliking a specific post if it is already liked
+you need to be logged in to unlike a post
 */
 
 /*
