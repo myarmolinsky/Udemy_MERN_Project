@@ -4,7 +4,7 @@ const ProfileSchema = new mongoose.Schema({
   user: {
     //we want to create a reference to the user model because every profile should be associated to a user
     type: mongoose.Schema.Types.ObjectId, //the type is an ObjectId. this is the _id we see in our database for each user
-    ref: "users" //the model we are talking about
+    ref: "user" //the model we are talking about
   },
   company: {
     type: String

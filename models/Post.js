@@ -5,7 +5,7 @@ const PostSchema = new Schema({
   user: {
     //we want a user to be connected to the post
     type: Schema.Types.ObjectId,
-    ref: "users" //reference the 'User' model
+    ref: "user" //reference the 'User' model
   },
   text: {
     type: String,
@@ -26,7 +26,7 @@ const PostSchema = new Schema({
       user: {
         //this way we will know which likes came from which user, a single user can only like a certain post once
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "user"
       }
     }
   ],
@@ -35,7 +35,7 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "user"
       },
       text: {
         type: String,
