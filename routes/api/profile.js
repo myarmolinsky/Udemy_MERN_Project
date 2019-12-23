@@ -103,8 +103,8 @@ router.post(
       let profile = await Profile.findOne({ user: req.user.id }); //find a profile by the user id we get from the token
       if (profile) {
         // Update the profile
-        profile = await Profile.findOneAndModify(
-          //find a profile and modify it (we are using .findOneAndModify() because .findOneAndUpdate() is deprecated)
+        profile = await Profile.findOneAndUpdate(
+          //find a profile and update it
           { user: req.user.id }, //find a profile by the user id we get from the token
           { $set: profileFields }, //set the fields of the found profile to the fields in profileFields
           { new: true } //options? (I'm not sure what this is for, it was not explained)
