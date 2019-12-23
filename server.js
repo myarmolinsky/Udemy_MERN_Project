@@ -77,17 +77,23 @@ we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
 we saved a POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
-we gave this POST request's Header a Key of 'content-type' with a Value of 'application/json'
-then in the Body we choose 'raw' and send some raw json with a name, an email, and a password
+we gave this request's Header a Key of 'content-type' with a Value of 'application/json'
+in the Body we chose 'raw' and send json with a name, an email, and a password
 
-we also saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
-we gave this GET request's Header a Key of 'x-auth-token' with a Value of the token of one of the users
+we saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
+we gave this request's Header a Key of 'x-auth-token' with a Value of the token of one of the users
 
 we saved a POST request to our "Users & Auth" collection called "Login User" so we can login quickly with our user
-we gave this POST request's Header a Key of 'content-type' and a Value of 'application/json' and we gave the body a raw json with a valid email and password
+we gave this request's Header a Key of 'content-type' and a Value of 'application/json' and we gave the body a raw json with a valid email and password
 
 we saved a GET request to our "Users & Auth" collection called "Get logged in user's profile" so we can quickly get the profile of a user who is logged in via their key
-we gave this GET request's header a Key of 'x-auth-token' and a Value of the token of one of the users
+we gave this request's header a Key of 'x-auth-token' and a Value of the token of one of the users
+
+we saved a POST request to our "" collection called "" so we can quickly create or update a profile for a user
+we gave this request's header a Key of 'content-type' and a Value of 'application/json' and another Key of 'x-auth-token' and a Value of the token of one of the users
+we created a preset for a Key of 'x-auth-token' and Value of the token for my user since we use it a lot so that we don't have to go get the token every time
+and we created a preset for a Key of 'content-type' and a Value of 'application/json' since we use that a lot
+in the Body we chose 'raw' and send json with profile fields excluding education and experiences
 */
 
 /*
