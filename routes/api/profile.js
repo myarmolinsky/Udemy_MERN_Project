@@ -124,4 +124,43 @@ router.post(
   }
 );
 
+// @route GET api/profile
+// @desc Get all profiles
+// @access Public
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]); //.find() will find all profiles and .populate() will populate the fields with a name and avatar
+    res.json(profiles); //return the profiles
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route GET api/profile/user/:user_id //':user_id' is a placeholder for a user's id. the ':' tells us that this is a placeholder
+// @desc Get profile by user ID
+// @access Public
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id //this will pull the user id from the url where the placeholder ':user_id' is
+    }).populate("user", ["name", "avatar"]);
+
+    if (!profile) {
+      //if there is no profile for this user
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+
+    res.json(profile); //return the profile
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      //if the kind of error is an ObjectId error, then return the same error message as for an incorrect user id
+      //this happens when the user_id provided in the url is not of the correct format(?)
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router; //export the router

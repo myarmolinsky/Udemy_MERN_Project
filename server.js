@@ -75,25 +75,28 @@ we want to separate our resources for our endpoints into collections in Postman
 collections are folders that can hold different requests
 we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
-we saved a POST request to our "Users & Auth" collection called "Register User"
+Requests we have saved:
+POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
 we gave this request's Header a Key of 'content-type' with a Value of 'application/json'
 in the Body we chose 'raw' and send json with a name, an email, and a password
 
-we saved a GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
+GET request to our "Users & Auth" collection called "Get auth user" so we can get an authenticated users info at any time by using their token
 we gave this request's Header a Key of 'x-auth-token' with a Value of the token of one of the users
 
-we saved a POST request to our "Users & Auth" collection called "Login User" so we can login quickly with our user
+POST request to our "Users & Auth" collection called "Login User" so we can login with our user
 we gave this request's Header a Key of 'content-type' and a Value of 'application/json' and we gave the body a raw json with a valid email and password
 
-we saved a GET request to our "Users & Auth" collection called "Get logged in user's profile" so we can quickly get the profile of a user who is logged in via their key
+GET request to our "Profiles" collection called "Get logged in user's profile" so we can get the profile of a user who is logged in via their key
 we gave this request's header a Key of 'x-auth-token' and a Value of the token of one of the users
 
-we saved a POST request to our "" collection called "" so we can quickly create or update a profile for a user
+POST request to our "Profiles" collection called "Create or Update a Profile" so we can create or update a profile for a user
 we gave this request's header a Key of 'content-type' and a Value of 'application/json' and another Key of 'x-auth-token' and a Value of the token of one of the users
-we created a preset for a Key of 'x-auth-token' and Value of the token for my user since we use it a lot so that we don't have to go get the token every time
+we created a preset for a Key of 'x-auth-token' and Value of the token for one of the users since we use it a lot so that we don't have to go get the token every time
 and we created a preset for a Key of 'content-type' and a Value of 'application/json' since we use that a lot
 in the Body we chose 'raw' and send json with profile fields excluding education and experiences
+
+GET request to out "Profiles" collection called "Get all profiles" to get a list of all profiles and their information
 */
 
 /*
