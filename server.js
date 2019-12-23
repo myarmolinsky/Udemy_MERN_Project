@@ -120,6 +120,16 @@ DELETE for education like for experiences
 GET request to our "Profiles" collection called "Get Github repos" for getting github repos by adding '/github/<github_username>' to the url after 'api/profile'
 
 POST request to our "Posts" collection called "Add post" for adding a post
+you need to be logged in to make a post and you need to submit a json with the field "text" filled in
+
+GET request to our "Posts" collection called "Get all posts" for getting all posts
+you need to be logged in to see posts
+
+GET request to our "Posts" collection called "Get post by ID" for getting a post by adding '/<post_id>' to the url after 'api/posts'
+you need to be logged in to see a post
+
+DELETE request to out "Posts" collection called "Delete post" for deleting a post by adding '/<post_id>' to the url after 'api/posts'
+you need to be logged in to delete the post (and you need to be the owner of the post to delete it)
 */
 
 /*
