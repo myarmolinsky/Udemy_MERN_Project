@@ -97,6 +97,11 @@ and we created a preset for a Key of 'content-type' and a Value of 'application/
 in the Body we chose 'raw' and send json with profile fields excluding education and experiences
 
 GET request to out "Profiles" collection called "Get all profiles" to get a list of all profiles and their information
+
+GET request to out "Profiles" collection called "Get Profile by user ID" to get a user by adding '/user/<user_id>' to the url
+
+DELETE request to out "Profiles" collection called "Delete profile and user" to delete a user and their profile (this will also delete their posts later)
+this request's header has a Key of 'x-auth-token' with a Value of the token of one of the users we want to delete
 */
 
 /*
