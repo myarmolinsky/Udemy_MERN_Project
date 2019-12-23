@@ -110,6 +110,10 @@ the Body has a raw json with experience fields
 DELETE request to our "Profiles" collection called "Delete experience" to remove an experience from the user's profile by adding '/user/<exp_id>' to the url
 this request's Header has a Key of 'x-auth-token' with a Value of the token of the user who's experience we want to delete
 the experience with an id matching the id provided in the url will be deleted
+
+PUT for education like for experiences
+
+DELETE for education like for experiences
 */
 
 /*
