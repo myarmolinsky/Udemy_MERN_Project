@@ -4,6 +4,8 @@ const auth = require("../../middleware/auth"); //bring in our authentication mid
 const Profile = require("../../models/Profile"); //bring in our 'Profile' model
 const User = require("../../models/User"); //bring in our 'User' model
 const { check, validationResult } = require("express-validator"); //bring in express-validator b/c the user creating/updating their profile will be a post request that takes data
+const request = require("request"); //bring in request
+const config = require("config"); //bring in config
 
 // @route GET api/profile/me //we will use api/profile to get all profiles so we are using api/profile/me to get specifically the user's profile
 // @desc Get current user's profile
@@ -342,6 +344,44 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: "Server Error" });
+  }
+});
+
+// @route Get api/profile/github/:username
+// @desc Get user repos from Github
+// @access Public
+router.get("/github/:username", (req, res) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${
+        req.params.username
+      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+        "githubClientId"
+      )}&client_secret=${config.get("githubSecret")}`,
+      //?is where start putting options for the repsonse we receive
+      //'per_page=5' makes it so we only see 5 repos per page
+      //'&' is put between different options
+      //'sort=created:asc' makes it so the repos are sorted in ascending order based off the date they were created
+      //'client_id' and 'client_secret' use the properties we added to default.json
+      //we use the 'request' package to access the api of the given user's repos (username received from url)
+      method: "GET", //method of request
+      headers: { "user-agent": "node.js" } //excluding this causes issues, not sure why
+    };
+
+    request(options, (error, response, body) => {
+      //make the request
+      if (error) console.error(error);
+
+      if (response.statusCode !== 200) {
+        //if status is not OK then return status '404' with a json message of "No Github profile found"
+        return res.status(404).json({ msg: "No Github profile found" });
+      }
+
+      res.json(JSON.parse(body)); //send the body which will just be a regular string with escaped quotes so we have to surround it with 'JSON.parse()' before we send it
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 

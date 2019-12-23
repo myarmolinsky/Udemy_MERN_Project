@@ -114,6 +114,8 @@ the experience with an id matching the id provided in the url will be deleted
 PUT for education like for experiences
 
 DELETE for education like for experiences
+
+GET for getting github repos by adding '/github/<github_username>' to the url after 'api/profile'
 */
 
 /*
