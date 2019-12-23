@@ -38,6 +38,7 @@ router.get("/", auth, async (req, res) => {
 // @desc Authenticate user & get token
 // @access Public
 router.post(
+  //this route's post request was based on the "users.js" route's post request so check there for any other comments about the code
   "/",
   [
     //a user logging in only puts in their email and password

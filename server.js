@@ -91,7 +91,9 @@ we gave this POST request's Header a Key of "content-type" and a Value of "appli
 JSON:
 json looks like this:
 {
-    "name": "Matthew Yarmolinsky"
+    "name": "Matthew Yarmolinsky",
+    "email": "myarmolinsky3043@bths.edu",
+    "password": "password"
 }
 */
 
