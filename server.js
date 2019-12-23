@@ -75,6 +75,8 @@ we want to separate our resources for our endpoints into collections in Postman
 collections are folders that can hold different requests
 we created 3 collections in our Postman: "Posts", "Profiles", and "Users & Auth"
 
+when we sent data, we want our request to have a Key of 'content-type' and a Value of 'application/json'
+
 Requests we have saved:
 POST request to our "Users & Auth" collection called "Register User"
 this way, whenever we want to make a request with the specific information that we saved, we can easily register a user with that information
@@ -115,7 +117,9 @@ PUT for education like for experiences
 
 DELETE for education like for experiences
 
-GET for getting github repos by adding '/github/<github_username>' to the url after 'api/profile'
+GET request to our "Profiles" collection called "Get Github repos" for getting github repos by adding '/github/<github_username>' to the url after 'api/profile'
+
+POST request to our "Posts" collection called "Add post" for adding a post
 */
 
 /*
