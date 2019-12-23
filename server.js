@@ -103,9 +103,13 @@ GET request to our "Profiles" collection called "Get Profile by user ID" to get 
 DELETE request to our "Profiles" collection called "Delete profile and user" to delete a user and their profile (this will also delete their posts later)
 this request's Header has a Key of 'x-auth-token' with a Value of the token of one of the users we want to delete
 
-PUT request to our "Profiles" collection called "Add profile experience" to add an experience to the user's profile
+PUT request to our "Profiles" collection called "Add experience" to add an experience to the user's profile
 this request's Header has our 'JSON Content Type' and 'Matt's Token' presets (although any user's token can be used as the Value for the 'x-auth-token' Key)
 the Body has a raw json with experience fields
+
+DELETE request to our "Profiles" collection called "Delete experience" to remove an experience from the user's profile by adding '/user/<exp_id>' to the url
+this request's Header has a Key of 'x-auth-token' with a Value of the token of the user who's experience we want to delete
+the experience with an id matching the id provided in the url will be deleted
 */
 
 /*
