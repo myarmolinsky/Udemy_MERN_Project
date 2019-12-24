@@ -22,6 +22,9 @@ in package.json under <scripts> we added "start: node server" which is the scrip
 and we added "server: nodemon server" which is the script we use for development ('npm run server')
 we will make all of our requests in Postman and enter http://localhost:5000
 its console should print 'API Running' to let us know our express server is up and running because that is the message we gave the app.get()'s callback
+More scripts we added:
+"client": runs "npm start" inside the client folder without us having to 'cd' into it
+"dev": runs "client" and "server" at the same time using the 'concurrently' package
 */
 
 /*
@@ -165,6 +168,32 @@ with express-validator, we can make sure the user is sending us the correct info
 MIDDLEWARE:
 we created our own custom middleware inside a folder called 'middleware' in order to be able to send a token back in order to authenticate and access protected routes
 inside our 'middleware' folder, we made a file called 'auth.js'
+*/
+
+/*
+NPX:
+'npx create-react-app client' creates a react application inside a folder called 'client'
+npx comes with node.js and allows us to run create-react-app or other things like it without having to install it globally on our machine
+*/
+
+/*
+CLIENTSIDE DEPENDENCIES:
+cd into 'client' and npm i:
+'axios' to make http requests,
+'react-router-dom' is the router,
+'redux',
+'react-redux',
+'redux-thunk' is middleware to allow us to make asynchronus requests,
+'redux-devtools-extension' makes things a bit easier since we are using the redux-devtools extension in our browser,
+'moment' is a date-and-time library to format date and time,
+'react-moment' allows us to use 'moment' within a component
+*/
+
+/*
+CLIENT FOLDER:
+we deleted .gitignore and readme and we deleted the git folder by doing 'rm -rf .git' after doing 'cd client' to get into the 'client' folder
+in the 'package.json' we need to add a proxy because when we make a request with axios, we don't want to have to type the full url, we just want to type the extension of the url
+we put '"proxy": "http://localhost:5000"' after everything else in the json
 */
 
 const express = require("express"); //bring in express
