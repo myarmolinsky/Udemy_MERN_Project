@@ -132,10 +132,16 @@ DELETE request to our "Posts" collection called "Delete post" for deleting a pos
 you need to be logged in to delete the post (and you need to be the owner of the post to delete it)
 
 PUT request to our "Posts" collection called "Like post" for liking a specific post
-you need to be logged in to like a post
+you need to be logged in
 
 PUT request to our "Posts" collection called "Unlike post" for unliking a specific post if it is already liked
-you need to be logged in to unlike a post
+you need to be logged in
+
+POST request to our "Posts" collection called "Add a commentary to a post" for commenting on a specific post
+you need to be logged in
+
+DELETE request to our "Posts" collection called "Delete Comment" for deleting a specific comment on a specific post
+you need to be logged in
 */
 
 /*
