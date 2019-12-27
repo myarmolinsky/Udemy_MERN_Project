@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from "react"; //we bring in the 'useState' hook because we are using a functional component
+import { Link } from "react-router-dom";
+// import axios from "axios";
 
 //since it's a form, we need to have some component state because each input needs to have its own state
 //they also needs to have an 'onchange' handler so when we type in it, it updates the state
@@ -25,12 +27,36 @@ const Register = () => {
   //we want to change the field associated with the name of the part of the form we are filling out so we use '[e.target.name]' to get the name of it
   //and we set the field to the new value in the part of the form we are changing by using 'e.target.value'
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault(); //do this because this is a submit
     if (password !== password2) {
       console.log("Passwords do not match");
     } else {
-      console.log(formData);
+      console.log("SUCCESS");
+      /*
+      const newUser = {
+        name,
+        email,
+        password
+      };
+      try {
+        const config = {
+          //since we are sending data, we create a 'config' object which has a 'headers' object
+          headers: {
+            "Content-Type": "application/json"
+          }
+        };
+
+        const body = JSON.stringify(newUser);
+
+        const res = await axios.post("/api/users", body, config); //first parameter is the proxy we are making a post request to (which we established in our 'users.js' file)
+        //second parameter is the data
+        //third parameter is the config
+        console.log(res.data);
+      } catch (err) {
+        console.error(err.response.data);
+      }
+      */
     }
   };
 
@@ -92,7 +118,7 @@ const Register = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
   );
