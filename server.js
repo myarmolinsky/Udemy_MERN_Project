@@ -194,6 +194,21 @@ CLIENT FOLDER:
 we deleted .gitignore and readme and we deleted the git folder by doing 'rm -rf .git' after doing 'cd client' to get into the 'client' folder
 in the 'package.json' we need to add a proxy because when we make a request with axios, we don't want to have to type the full url, we just want to type the extension of the url
 we put '"proxy": "http://localhost:5000"' after everything else in the json
+deleted 'App.test.js', 'index.css', 'logo.svg', and 'serviceWorker.js' to clean up our app a bit
+removed the references to 'index.css' and 'serviceWorker.js' from 'index.js' because we removed the files mentioned above
+removed references to 'logo.svg' from 'App.js'
+replaced the div being returned by the function 'App' in 'App.js' with a Fragment
+replaced all css from 'App.css' with the css from the file 'style.css' provided by the course
+created folder called 'img' inside 'src' and moved provided 'showcase.jpg' into it
+added fontawesome to our index.html
+created a folder in 'src' called 'components'
+created a folder in 'components' called 'layout'
+added files 'Navbar.js' and 'Landing.js' to 'layout'
+*/
+
+/*
+ES7 REACT-REDUX SNIPPETS EXTENSION
+type 'racf' and press 'enter' to create a functional component which takes the name from the file
 */
 
 const express = require("express"); //bring in express
