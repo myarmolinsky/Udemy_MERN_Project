@@ -204,11 +204,18 @@ added fontawesome to our index.html
 created a folder in 'src' called 'components'
 created a folder in 'components' called 'layout'
 added files 'Navbar.js' and 'Landing.js' to 'layout'
+created folder 'auth' inside 'components' which is where we put the login and register components
 */
 
 /*
 ES7 REACT-REDUX SNIPPETS EXTENSION
 type 'racf' and press 'enter' to create a functional component which takes the name from the file
+'section.<className> to create a '<section></section>' tag with the given className
+*/
+
+/*
+REACT
+to comment in react jsx, we need to do '{/** /}' (without the space between the second asterisk and the second slash)
 */
 
 const express = require("express"); //bring in express
