@@ -218,6 +218,29 @@ REACT
 to comment in react jsx, we need to do '{/** /}' (without the space between the second asterisk and the second slash)
 */
 
+/*
+REDUCER
+Redux is a state manager, often used for larger applications.  It's not the only state manager out there, there are others like 'context api' which is built into React
+We're using Redux where we're using a few reducers
+We have component-level state in React, an example of which is our register and login forms' input fields.  That data gets put into a component-level state
+With things like authentication, profiles, posts, these are app-level state items that we want to be able to access anywhere from any component
+That's where Redux comes in: it gives us app-level state
+We will be able to store data inside this state, called the Redux Store, using a reducer and we will be able to pull the data from the store wherever and whenever we need it
+Actions get dispatched to the reducer and the reducer then decides how to handle the state and how to pass it down to the components in the UI
+It will also update any components that use that piece of state
+This prevents us from having to pass things around from component to component like we would have to if we didn't use a state manager
+Call Action -> Dispatch Action to Reducer -> Reducer decides what to do with that state (delete a post, update profile, etc.) -> State gets sent back to all components needing it
+Reducers we will have:
+Auth reducer that'll handle everything to do with authentication. On every load of the app component we want to check for the user/load a user
+We want to hit our backend 'api/auth' endpoint and see if we're logged in, we want to see if there's a token stored
+If we are logged in, components will react to that, such as the navbar which will have certain links like 'logout', 'dashboard', etc.
+If we are not logged in, then it will show stuff like 'register' and 'login'
+It will react to whatever is in our state
+Profile reducer that'll handle anything to do with profiles/posts
+Alert reducer because we want to be able to set alerts and have an alert show on the screen (error and success messages)
+We'll have another action to remove the alerts
+*/
+
 const express = require("express"); //bring in express
 const connectDB = require("./config/db"); //bring in db.js from folder 'config'
 
@@ -233,7 +256,7 @@ app.get("/", (req, res) => res.send("API Running"));
 //res.send() sends data to a browser.  This one just says "API Running"
 
 // Define Routes
-app.use("/api/users", require("./routes/api/users")); //this makes '/api/users' pertain to the '/' in the router.get() call in 'users.js' in 'routers/api/'
+app.use("/api/users", require("./routes/api/users")); //this makes '/api/users' pertain to the '/' in the router.get() call in 'users.js' in 'routes/api/'
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
