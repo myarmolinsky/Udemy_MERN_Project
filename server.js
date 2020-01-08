@@ -186,7 +186,8 @@ cd into 'client' and npm i:
 'redux-thunk' is middleware to allow us to make asynchronus requests,
 'redux-devtools-extension' makes things a bit easier since we are using the redux-devtools extension in our browser,
 'moment' is a date-and-time library to format date and time,
-'react-moment' allows us to use 'moment' within a component
+'react-moment' allows us to use 'moment' within a component,
+'uuid' gives us a randomly generated UID on the fly which we will us to randomly generate ids for our alerts
 */
 
 /*
@@ -211,6 +212,9 @@ created folder 'auth' inside 'components' which is where we put the login and re
 ES7 REACT-REDUX SNIPPETS EXTENSION
 type 'racf' and press 'enter' to create a functional component which takes the name from the file
 'section.<className> to create a '<section></section>' tag with the given className
+'racfp' for prop types
+'ptfr' is a shortcut for 'PropTypes.func.isRequired', this is the function version
+'ptar' is the array version
 */
 
 /*

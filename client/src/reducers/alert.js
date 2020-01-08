@@ -16,6 +16,7 @@ this is where all of our action files will go
 this is also where we make http requests
 we made a file inside 'actions' called 'types.js' which will have all of our variables/constants
 we also made a file inside 'actions' called 'alert.js'
+we also made a file in the 'components' folder called 'Alert.js' so that we can make it so the user can see the alerts
 */
 
 export default function(state = initialState, action) {

@@ -1,10 +1,16 @@
 import React, { Fragment, useState } from "react"; //we bring in the 'useState' hook because we are using a functional component
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types"; //any time we use a prop, we have to import PropTypes
+
 // import axios from "axios";
 
 //since it's a form, we need to have some component state because each input needs to have its own state
 //they also needs to have an 'onchange' handler so when we type in it, it updates the state
-const Register = () => {
+const Register = ({ setAlert }) => {
+  //props gets passed as a parameter because we are using connect and setAlert and we want to able to use props.setAlert()
+  //we destructured props
   const [formData, setFormData] = useState(
     //pull this from useState()
     {
@@ -30,7 +36,7 @@ const Register = () => {
   const onSubmit = async e => {
     e.preventDefault(); //do this because this is a submit
     if (password !== password2) {
-      console.log("Passwords do not match");
+      setAlert("Passwords do not match", "danger"); //we gave the alert a type of 'danger' so that we use the '.alert-danger' css
     } else {
       console.log("SUCCESS");
       /*
@@ -124,4 +130,14 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired //the 'func' part is because setAlert is a function
+};
+
+export default connect(null, { setAlert })(Register);
+//every time we import connect, we have to export it by doing 'export default connect()()' and putting what we're exporting in the second parantheses (in this case 'Register')
+//whenever you want to bring in an action, you have to pass it into connect()
+//the first parameter of connect() is any state that you want to map (so if you want to get state from alert or profile you put that)
+//we are making it null because we aren't trying to map a state
+//the second parameter is an object with any actions you want to use
+//doing this will let us use 'props.setAlert()'
