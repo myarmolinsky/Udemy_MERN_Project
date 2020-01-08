@@ -2,13 +2,14 @@ import React, { Fragment, useState } from "react"; //we bring in the 'useState' 
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types"; //any time we use a prop, we have to import PropTypes
 
 // import axios from "axios";
 
 //since it's a form, we need to have some component state because each input needs to have its own state
 //they also needs to have an 'onchange' handler so when we type in it, it updates the state
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   //props gets passed as a parameter because we are using connect and setAlert and we want to able to use props.setAlert()
   //we destructured props
   const [formData, setFormData] = useState(
@@ -38,7 +39,7 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert("Passwords do not match", "danger"); //we gave the alert a type of 'danger' so that we use the '.alert-danger' css
     } else {
-      console.log("SUCCESS");
+      register({ name, email, password });
       /*
       const newUser = {
         name,
@@ -82,7 +83,6 @@ const Register = ({ setAlert }) => {
             onChange={e => onChange(e)} //we need an onChange handler to be able to type inside the component
             //the goal is to call 'setFormData()' and to update the 'name' field in the state
             //we could call 'setFormData()' directly but we are calling a seperate onChange function instead
-            required
           />
         </div>
         <div className="form-group">
@@ -92,7 +92,6 @@ const Register = ({ setAlert }) => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
-            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -104,10 +103,8 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
             value={password}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -115,10 +112,8 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            minLength="6"
             value={password2}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -131,10 +126,11 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired //the 'func' part is because setAlert is a function
+  setAlert: PropTypes.func.isRequired, //the 'func' part is because setAlert is a function
+  register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
 //every time we import connect, we have to export it by doing 'export default connect()()' and putting what we're exporting in the second parantheses (in this case 'Register')
 //whenever you want to bring in an action, you have to pass it into connect()
 //the first parameter of connect() is any state that you want to map (so if you want to get state from alert or profile you put that)
