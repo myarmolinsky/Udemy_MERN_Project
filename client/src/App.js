@@ -5,6 +5,8 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; //import react router
 // Redux
 import { Provider } from "react-redux"; //the Provider connects Redux and React
@@ -42,7 +44,9 @@ const App = () => {
               {/*wrap everything in a switch so we don't have issues, especially when we create our 'private route' component*/}
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               {/*routes for 'register' and 'login'*/}
+              {/*we want the dashboard route to be private because only logged in users should be able to access it so we made our own PrivateRoute component*/}
             </Switch>
           </section>
         </Fragment>
