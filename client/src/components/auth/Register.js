@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react"; //we bring in the 'useState' hook because we are using a functional component
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 import PropTypes from "prop-types"; //any time we use a prop, we have to import PropTypes
@@ -9,7 +9,7 @@ import PropTypes from "prop-types"; //any time we use a prop, we have to import 
 
 //since it's a form, we need to have some component state because each input needs to have its own state
 //they also needs to have an 'onchange' handler so when we type in it, it updates the state
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   //props gets passed as a parameter because we are using connect and setAlert and we want to able to use props.setAlert()
   //we destructured props
   const [formData, setFormData] = useState(
@@ -66,6 +66,11 @@ const Register = ({ setAlert, register }) => {
       */
     }
   };
+
+  // Redirect to dashboard if already logged in/registered
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Fragment>
@@ -127,10 +132,15 @@ const Register = ({ setAlert, register }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired, //the 'func' part is because setAlert is a function
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
 //every time we import connect, we have to export it by doing 'export default connect()()' and putting what we're exporting in the second parantheses (in this case 'Register')
 //whenever you want to bring in an action, you have to pass it into connect()
 //the first parameter of connect() is any state that you want to map (so if you want to get state from alert or profile you put that)
