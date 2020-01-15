@@ -6,6 +6,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/profile-forms/CreateProfile";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; //import react router
 // Redux
@@ -47,6 +48,11 @@ const App = () => {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               {/*routes for 'register' and 'login'*/}
               {/*we want the dashboard route to be private because only logged in users should be able to access it so we made our own PrivateRoute component*/}
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
             </Switch>
           </section>
         </Fragment>
