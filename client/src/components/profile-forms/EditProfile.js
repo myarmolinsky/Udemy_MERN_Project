@@ -1,10 +1,15 @@
-import React, { Fragment, useState } from "react"; //bring in 'useState' because this is a form and each input should be a piece of state, similar to login/register
+import React, { Fragment, useState, useEffect } from "react"; //bring in 'useState' because this is a form and each input should be a piece of state, similar to login/register
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createProfile } from "../../actions/profile";
+import { createProfile, getCurrentProfile } from "../../actions/profile"; //'createProfile' for editing profile, 'getCurrentProfile' to get prexisting fields
 import { Link, withRouter } from "react-router-dom"; //we have to import 'withRouter' in order to use the history object in our 'createProfile' method
 
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({
+  profile: { profile, loading },
+  createProfile,
+  getCurrentProfile,
+  history
+}) => {
   const [formData, setFormData] = useState({
     //first parameter is our default values/fields
     company: "",
@@ -22,6 +27,26 @@ const CreateProfile = ({ createProfile, history }) => {
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false); //false by default
+
+  useEffect(() => {
+    getCurrentProfile();
+
+    setFormData({
+      company: loading || !profile.company ? "" : profile.company, //if it is loading or there is no profile.{insert_field} then leave the field blank, otherwise show the field
+      website: loading || !profile.website ? "" : profile.website,
+      location: loading || !profile.location ? "" : profile.location,
+      status: loading || !profile.status ? "" : profile.status,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      githubusername:
+        loading || !profile.githubusername ? "" : profile.githubusername,
+      bio: loading || !profile.bio ? "" : profile.bio,
+      twitter: loading || !profile.twitter ? "" : profile.twitter,
+      facebook: loading || !profile.facebook ? "" : profile.facebook,
+      linkedin: loading || !profile.linkedin ? "" : profile.linkedin,
+      youtube: loading || !profile.youtube ? "" : profile.youtube,
+      instagram: loading || !profile.instagram ? "" : profile.instagram
+    });
+  }, [loading]); //this 'useEffect' runs while 'loading' is true
 
   const {
     company,
@@ -44,7 +69,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
@@ -222,8 +247,16 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired
+EditProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile)); //we must wrap 'CreateProfile' in 'withRouter()' in order to use the 'history' object
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
+); //we must wrap 'CreateProfile' in 'withRouter()' in order to use the 'history' object
