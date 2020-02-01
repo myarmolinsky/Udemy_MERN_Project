@@ -17,6 +17,7 @@ import { Provider } from "react-redux"; //the Provider connects Redux and React
 import store from "./store"; //bring in the store
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import Profiles from "./components/profiles/Profiles";
 
 if (localStorage.token) {
   //we need to call this here too (not just in our auth action) because otherwise it only gets called once but we need to check it often
@@ -48,6 +49,7 @@ const App = () => {
               {/*wrap everything in a switch so we don't have issues, especially when we create our 'private route' component*/}
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               {/*routes for 'register' and 'login'*/}
               {/*we want the dashboard route to be private because only logged in users should be able to access it so we made our own PrivateRoute component*/}
