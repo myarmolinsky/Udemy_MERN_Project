@@ -46,7 +46,23 @@ const EditProfile = ({
       youtube: loading || !profile.youtube ? "" : profile.youtube,
       instagram: loading || !profile.instagram ? "" : profile.instagram
     });
-  }, [loading]); //this 'useEffect' runs while 'loading' is true
+  }, [
+    loading,
+    getCurrentProfile
+    //we cannot add any of these dependencies even though the console is warning us to because if we add them then we cannot edit their respective fields
+    // profile.bio,
+    // profile.company,
+    // profile.githubusername,
+    // profile.instagram,
+    // profile.linkedin,
+    // profile.location,
+    // profile.skills,
+    // profile.status,
+    // profile.twitter,
+    // profile.website,
+    // profile.youtube,
+    // profile.facebook
+  ]); //this 'useEffect' runs while 'loading' is true
 
   const {
     company,

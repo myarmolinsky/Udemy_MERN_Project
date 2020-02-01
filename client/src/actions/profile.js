@@ -237,7 +237,7 @@ export const deleteAccount = id => async dispatch => {
     //we want to make sure the user knows the repercussions of the action and that they want to do that
     //so we make a confirmation window so that the user has to confirm that they really want to perform this action
     try {
-      const res = await axios.delete("/api/profile/");
+      await axios.delete("/api/profile/");
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });

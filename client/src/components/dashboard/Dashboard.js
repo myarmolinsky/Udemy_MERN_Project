@@ -23,7 +23,7 @@ const Dashboard = ({
   useEffect(() => {
     //we want to call 'getCurrentProfile()' as soon as this loads so we put it inside useEffect()
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
