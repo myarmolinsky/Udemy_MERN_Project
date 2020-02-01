@@ -3,6 +3,7 @@ const router = express.Router(); //bring in express router, allows us to make ro
 const auth = require("../../middleware/auth"); //bring in our authentication middleware
 const Profile = require("../../models/Profile"); //bring in our 'Profile' model
 const User = require("../../models/User"); //bring in our 'User' model
+const Post = require("../../models/Post"); //bring in our 'Post' model
 const { check, validationResult } = require("express-validator"); //bring in express-validator b/c the user creating/updating their profile will be a post request that takes data
 const request = require("request"); //bring in request
 const config = require("config"); //bring in config
@@ -170,7 +171,11 @@ router.get("/user/:user_id", async (req, res) => {
 // @access Private
 router.delete("/", auth, async (req, res) => {
   try {
+    // Remove user posts
+    await Post.deleteMany({ user: req.user.id });
+    // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id }); //find the user's profile by their token and remove their profile
+    // Remove user
     await User.findOneAndRemove({ _id: req.user.id }); //find the user by their token and remove them
 
     res.json({ msg: "User deleted" });
