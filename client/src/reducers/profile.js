@@ -2,7 +2,9 @@ import {
   GET_PROFILE,
   PROFILE_ERROR,
   CLEAR_PROFILE,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  GET_PROFILES,
+  GET_REPOS
 } from "../actions/types";
 
 //we will have actions to get the profile, create it, update it, clear it from the state, etc.
@@ -24,6 +26,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      };
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: payload,
         loading: false
       };
     case PROFILE_ERROR:
