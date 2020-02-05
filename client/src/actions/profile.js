@@ -13,7 +13,7 @@ import {
 // Get current user's profile
 export const getCurrentProfile = () => async dispatch => {
   try {
-    const res = await axios.get("api/profile/me"); //this route returns all the profile data
+    const res = await axios.get("/api/profile/me"); //this route returns all the profile data
 
     dispatch({
       type: GET_PROFILE,
@@ -32,7 +32,7 @@ export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE }); //we do this to prevent the flashing of the past user's profile
 
   try {
-    const res = await axios.get("api/profile"); //this route returns all the profile data
+    const res = await axios.get("/api/profile"); //this route returns all the profile data
 
     dispatch({
       type: GET_PROFILES,
@@ -49,7 +49,7 @@ export const getProfiles = () => async dispatch => {
 // Get profile by ID
 export const getProfileById = userId => async dispatch => {
   try {
-    const res = await axios.get(`api/profile/user/${userId}`); //this route returns all the profile data
+    const res = await axios.get(`/api/profile/user/${userId}`); //this route returns all the profile data
 
     dispatch({
       type: GET_PROFILE,
@@ -66,7 +66,7 @@ export const getProfileById = userId => async dispatch => {
 // Get GitHub repos
 export const getGithubRepos = username => async dispatch => {
   try {
-    const res = await axios.get(`api/profile/github/${username}`); //this route returns all the profile data
+    const res = await axios.get(`/api/profile/github/${username}`); //this route returns all the profile data
 
     dispatch({
       type: GET_REPOS,

@@ -18,6 +18,7 @@ import store from "./store"; //bring in the store
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 if (localStorage.token) {
   //we need to call this here too (not just in our auth action) because otherwise it only gets called once but we need to check it often
@@ -50,6 +51,7 @@ const App = () => {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:id" component={Profile} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               {/*routes for 'register' and 'login'*/}
               {/*we want the dashboard route to be private because only logged in users should be able to access it so we made our own PrivateRoute component*/}
