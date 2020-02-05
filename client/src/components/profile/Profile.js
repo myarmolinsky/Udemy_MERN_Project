@@ -6,8 +6,9 @@ import Spinner from "../layout/Spinner";
 import { getProfileById } from "../../actions/profile";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
-import ProfileExperience from "./ProfileExperience.js";
-import ProfileEducation from "./ProfileEducation.js";
+import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 
 const Profile = ({
   match,
@@ -71,6 +72,10 @@ const Profile = ({
                 <h4>No education credentials</h4>
               )}
             </div>
+
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
         </Fragment>
       )}
