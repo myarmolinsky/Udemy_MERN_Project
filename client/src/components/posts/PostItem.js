@@ -29,7 +29,7 @@ const PostItem = ({
       {showActions && ( //we only want to be able to see the buttons if showActions is true
         <Fragment>
           <button
-            onClick={e => addLike(_id)}
+            onClick={() => addLike(_id)}
             type="button"
             className="btn btn-light"
           >
@@ -37,7 +37,7 @@ const PostItem = ({
             <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
           </button>
           <button
-            onClick={e => removeLike(_id)}
+            onClick={() => removeLike(_id)}
             type="button"
             className="btn btn-light"
           >
